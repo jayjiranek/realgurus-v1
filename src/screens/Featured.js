@@ -8,7 +8,20 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-function Featured(props) {
+import CategoriesSection from "../components/CategoriesSection";
+
+function Featured() {
+	const [allCategoryModalIsVisible, setAllCategoryModalIsVisible] =
+		useState(false);
+
+	function startAllCategoriesModule() {
+		setAllCategoryModalIsVisible(true);
+	}
+
+	function endAllCategoriesModule() {
+		setAllCategoryModalIsVisible(false);
+	}
+
 	return (
 		<View style={styles.pageContainer}>
 			<View style={styles.crownTopLogoContainer}>
@@ -21,7 +34,16 @@ function Featured(props) {
 				<View style={styles.categoriesHeaderContainer}>
 					<Text style={styles.sectionHeaderText}>Categories</Text>
 					<TouchableOpacity style={styles.moreCategoriesButton}>
-						<Text style={styles.buttonText}>See all</Text>
+						<Text
+							style={styles.buttonText}
+							onPress={startAllCategoriesModule}
+						>
+							See all
+						</Text>
+						<CategoriesSection
+							visible={allCategoryModalIsVisible}
+							onBack={endAllCategoriesModule}
+						/>
 					</TouchableOpacity>
 				</View>
 			</View>
